@@ -729,6 +729,8 @@ print("Recall score",recall_score(y_test,y_pred))
 
 # Conclusion: With abvoe various metrics - it is obseved that we have `90%` accuracy with Logistic Regression. Lets check the other model Random Forest 
 
+##### COMMENTED THE REMAINING 2 MODELS for Simple 
+
 # ## 3.2 Random Forest 
 # Random Forest Regression is a supervised learning algorithm that uses ensemble learning method for regression. 
 # A random forest is a meta estimator that fits a number of classifying decision trees on various sub-samples of the dataset
@@ -738,7 +740,7 @@ print("Recall score",recall_score(y_test,y_pred))
 
 # Ref: https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
 # Ref: https://machinelearningmastery.com/random-forest-ensemble-in-python/ example 
-rc=RandomForestClassifier(random_state=unique_random_state_for_book,n_jobs=-1) #n_jobsint The number of jobs to run in parallel.  -1 means using all processors.
+# rc=RandomForestClassifier(random_state=unique_random_state_for_book,n_jobs=-1) #n_jobsint The number of jobs to run in parallel.  -1 means using all processors.
 
 
 # In[68]:
@@ -747,15 +749,15 @@ rc=RandomForestClassifier(random_state=unique_random_state_for_book,n_jobs=-1) #
 # since we using gridsearchcv - lets explore https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html 
 # and https://www.analyticsvidhya.com/blog/2021/06/tune-hyperparameters-with-gridsearchcv/ 
 
-params = {'max_depth': [1, 2, 5, 10, 20], 'min_samples_leaf': [5, 10, 20, 50, 100],
-    'max_features': [2,3,4], 'n_estimators': [10, 30, 50, 100, 200,400]
-}
+# params = {'max_depth': [1, 2, 5, 10, 20], 'min_samples_leaf': [5, 10, 20, 50, 100],
+#     'max_features': [2,3,4], 'n_estimators': [10, 30, 50, 100, 200,400]
+# }
 
 
 # In[69]:
 
 
-grid_search_model = GridSearchCV(estimator=rc, param_grid=params,cv=4, n_jobs=-1, verbose=1, scoring = "accuracy")
+# grid_search_model = GridSearchCV(estimator=rc, param_grid=params,cv=4, n_jobs=-1, verbose=1, scoring = "accuracy")
 # 4 fold cross validation  (marking it as 1 for local testing )
 #1. estimator – A scikit-learn model
 #2. param_grid – A dictionary with parameter names as keys and lists of parameter values.
@@ -768,44 +770,44 @@ grid_search_model = GridSearchCV(estimator=rc, param_grid=params,cv=4, n_jobs=-1
 
 # to print time 
 
-grid_search_model.fit(x_train_SMOTE,y_train_SMOTE)
+# grid_search_model.fit(x_train_SMOTE,y_train_SMOTE)
 
 
 # In[118]:
 
 
-rf_best = grid_search_model.best_estimator_
-rf_best
+# rf_best = grid_search_model.best_estimator_
+# rf_best
 
 
 # In[119]:
 
 
-rc=RandomForestClassifier(max_depth=20, max_features=4, min_samples_leaf=10,n_estimators=10, n_jobs=-1, random_state=unique_random_state_for_book)
-rc
+# rc=RandomForestClassifier(max_depth=20, max_features=4, min_samples_leaf=10,n_estimators=10, n_jobs=-1, random_state=unique_random_state_for_book)
+# rc
 
 
 # In[120]:
 
 
-rc.fit(x_train_SMOTE,y_train_SMOTE)
+# rc.fit(x_train_SMOTE,y_train_SMOTE)
 
 
 # In[121]:
 
 
-y_pred=rc.predict(x_test)
-y_pred
+# y_pred=rc.predict(x_test)
+# y_pred
 
 
 # In[122]:
 
 
-print("Accuracy: ",accuracy_score(y_test, y_pred))
-print(confusion_matrix(y_test,y_pred))
-print(classification_report(y_test, y_pred))
-print("precision score: ",precision_score(y_test,y_pred))
-print("Recall score: ",recall_score(y_test,y_pred))
+# print("Accuracy: ",accuracy_score(y_test, y_pred))
+# print(confusion_matrix(y_test,y_pred))
+# print(classification_report(y_test, y_pred))
+# print("precision score: ",precision_score(y_test,y_pred))
+# print("Recall score: ",recall_score(y_test,y_pred))
 
 
 # Conclusion: With abvoe various metrics - it is obseved that we have `89`% accuracy with Random Forest Regression. Lets check the other model Navie Bias - XGBoost has issues with deployment as per discussion over class.
@@ -818,30 +820,30 @@ print("Recall score: ",recall_score(y_test,y_pred))
 
 
 #Like MultinomialNB, this classifier is suitable for discrete data.
-nbc=BernoulliNB()
+#nbc=BernoulliNB()
 
 
 # In[73]:
 
 
-nbc.fit(x_train_SMOTE,y_train_SMOTE)
+#nbc.fit(x_train_SMOTE,y_train_SMOTE)
 
 
 # In[74]:
 
 
-y_pred=nbc.predict(x_test)
-y_pred
+#y_pred=nbc.predict(x_test)
+#y_pred
 
 
 # In[75]:
 
 
-print("Accuracy: ", accuracy_score(y_test, y_pred))
-print(confusion_matrix(y_test,y_pred))
-print(classification_report(y_test, y_pred))
-print("precision score",precision_score(y_test,y_pred))
-print("Recall score",recall_score(y_test,y_pred))
+# print("Accuracy: ", accuracy_score(y_test, y_pred))
+# print(confusion_matrix(y_test,y_pred))
+# print(classification_report(y_test, y_pred))
+# print("precision score",precision_score(y_test,y_pred))
+# print("Recall score",recall_score(y_test,y_pred))
 
 
 # Conclusion: With abvoe various metrics - it is obseved that we have `85`% accuracy with Naive Bias Regression. 
