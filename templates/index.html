@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sentiment Based Product Recommendation System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h3>Sentiment Based Product Recommendation System</h3>
+  <h5>Provide a user-name and it provides the recommendations</h5> 
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+	<form method="POST" action="{{ url_for('predict')}}">
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-envolope"></i>Username</div>
+                        <input  class="form-control" placeholder="Enter Username" 
+                        value="" required="" autofocus="" type="user_input" name="user_input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    
+                    <div class="form-group mt-4 mb-2" style="text-align:center">
+                        <button type="submit" class="btn btn-success " >
+                            Get Recommendations
+                        </button>
+                    </div>
+                    
+                </div>
+            </form>
+	</div>
+  </div>
+  <div class="row">
+  <div class="col-12">
+  <label class="labelText"> Recommendations for  <b>{{user_input}}:</b> </label>
+
+  {{prediction_text}} 
+   
+  </div>
+  </div>
+  
+</div>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+</body>
+<footer>
+<hr>
+<div class="row">
+<div class="col-12" style="text-align:center">
+Basic Template | Done by Sharath Chandra - sharathchandra.linga@gmail.com 
+</div>
+</div>
+</footer>
+</html>
+
+
